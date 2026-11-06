@@ -30,7 +30,7 @@ The project is developed step by step, documenting the development process, tech
 
 | Stage | Description | Status |
 |---|---|---|
-| 00 | Project setup and Git configuration | In Progress |
+| 00 | Project setup and Git configuration | Completed |
 | 01 | Python, OOP and PEP8 | Planned |
 | 02 | Django fundamentals | Planned |
 | 03 | PostgreSQL and Django ORM | Planned |
@@ -53,6 +53,7 @@ The goal is to understand backend development, software architecture, and the in
 
 ## Project Status
 
-Currently in the initial setup stage.
+Stage 00 completed.
+Currently preparing for Stage 01.
 
 More updates will be added as development progresses.
