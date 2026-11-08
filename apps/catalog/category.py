@@ -26,3 +26,13 @@ class Category:
 
     def get_products(self) -> list[Product]:
         return self.products.copy()
+
+    def __str__(self) -> str:
+        return f"{self.name} ({len(self.products)} products)"
+
+
+    def __repr__(self) -> str:
+        return (
+            f"Category(name={self.name!r}, "
+            f"products={len(self.products)})"
+        )

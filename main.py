@@ -7,27 +7,27 @@ iphone = Product(name="iPhone", price=Decimal("999.99"), quantity=10)
 macbook = Product(name="MacBook", price=Decimal("1999.99"), quantity=5)
 
 
-print("Initial information:")
-print(f"iPhone: {iphone.name}, Price: {iphone.price}, Quantity: {iphone.quantity}")
+# print("Initial information:")
+# print(f"iPhone: {iphone.name}, Price: {iphone.price}, Quantity: {iphone.quantity}")
 
-print("\nChecking availability:")
-print(f"iPhone available: {iphone.is_available()}")
+# print("\nChecking availability:")
+# print(f"iPhone available: {iphone.is_available()}")
 
-print("\nSelling products:")
-iphone.sell(3)
+# print("\nSelling products:")
+# iphone.sell(3)
 
-print(f"Remaining stock: {iphone.quantity}")
+# print(f"Remaining stock: {iphone.quantity}")
 
-print("\nRestocking:")
-iphone.restock(5)
+# print("\nRestocking:")
+# iphone.restock(5)
 
-print(f"Updated stock: {iphone.quantity}")
+# print(f"Updated stock: {iphone.quantity}")
 
-print("\nUpdating price:")
-iphone.update_price(Decimal("480000.00"))
+# print("\nUpdating price:")
+# iphone.update_price(Decimal("480000.00"))
 
-print(f"New price: {iphone.price}")
-print(f"iPhone: {iphone.name}, Price: {iphone.price}, Quantity: {iphone.quantity}")
+# print(f"New price: {iphone.price}")
+# print(f"iPhone: {iphone.name}, Price: {iphone.price}, Quantity: {iphone.quantity}")
 
 smartphones = Category("Smartphones")
 
@@ -49,3 +49,30 @@ for product in smartphones.get_products():
         f"Price: {product.price} | "
         f"Quantity: {product.quantity}"
     )
+
+print("\n--- Product Representation ---")
+
+print(iphone)
+print(repr(iphone))
+
+print("\n--- Category Representation ---")
+
+print(smartphones)
+print(repr(smartphones))
+
+print("\n--- Encapsulation ---")
+
+print(f"Current price: {iphone.price}")
+print(f"Current stock: {iphone.quantity}")
+
+# Update price
+iphone.price = Decimal("480000")
+
+# Restock
+iphone.restock(5)
+
+# Sell products
+iphone.sell(2)
+
+print(f"Updated price: {iphone.price}")
+print(f"Updated stock: {iphone.quantity}")
