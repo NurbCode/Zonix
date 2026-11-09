@@ -1,18 +1,26 @@
-# Development Log
+## Stage 01 — Inheritance, Polymorphism & Abstract Classes
 
-## Stage 00 — Project Initialization
+**Date:** 2026-11-09
 
 ### Completed
-- Created project directory.
-- Prepared initial folder structure.
-- Configured Git.
-- Added .gitignore.
-- Created project README.
 
-### Technologies
-- Git
-- GitHub
-- VS Code
+- Implemented `PhysicalProduct` inheriting from `Product`.
+- Implemented `DigitalProduct` inheriting from `Product`.
+- Added product-specific attributes and properties.
+- Implemented method overriding through `get_product_info()`.
+- Added polymorphic behavior for different product types.
+- Converted `Product` into an abstract base class using `ABC`.
+- Added `@abstractmethod` to enforce implementation of `get_product_info()`.
+- Added `_get_base_product_info()` to reuse common product information.
 
-### Next Stage
-Python, OOP and PEP8 fundamentals.
+### Testing
+
+- `test_inheritance.py`
+- `test_polymorphism.py`
+- `test_abstract.py`
+
+All three test scenarios were executed successfully.
+
+### Concepts Covered
+
+Inheritance, Polymorphism, Dynamic Dispatch, Abstract Classes, ABC and Method Overriding.
