@@ -4,9 +4,7 @@ Zonix is a Python learning project for building an e-commerce backend incrementa
 
 ## Current status
 
-**Stage 01 — Python and object-oriented programming: implemented in source.** The catalog includes an abstract product base class, physical and digital products, categories, stock and price validation, and pricing helpers. No automated test files or dependency manifests have been committed yet. The `config/`, `requirements/`, and `tests/` directories currently contain placeholders only.
-
-`main.py` is an in-progress demonstration script. It currently attempts to instantiate the abstract `Product` class, so it raises `TypeError` before reaching the category demonstration. Instantiate `PhysicalProduct` or `DigitalProduct` to exercise the current hierarchy.
+**Stage 01 — Python and object-oriented programming: completed.** The catalog demonstrates inheritance, encapsulation, polymorphism, and abstraction through an abstract `Product` base class and its physical and digital implementations. `Category` demonstrates composition. The project also includes pricing helper functions, 22 automated tests using `unittest`, and PEP 8 style checks with Flake8.
 
 ## Repository structure
 
@@ -20,7 +18,7 @@ apps/catalog/
 docs/
   development-log.md  Project progress summary
   stage-01/            Stage 01 concept notes
-main.py                In-progress demonstration script
+main.py                Demonstration script for the catalog and OOP concepts
 ```
 
 ## Implemented functionality
@@ -31,22 +29,32 @@ main.py                In-progress demonstration script
 - `pricing.py` provides `calculate_total()`, `apply_discount()`, and a standalone `is_available()` helper.
 - Product and category objects provide string and developer representations.
 
-## Running the current demonstration
+## Running the Project
 
-The project uses only the Python standard library and has no dependency file yet. Run the script from the repository root with:
+Run the demonstration from the repository root:
 
-```console
+```bash
 python main.py
 ```
 
-The script needs to be updated to use a concrete product class before it can run successfully; see the current status above.
+Run the automated tests:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Check code style with Flake8:
+
+```bash
+python -m flake8 apps tests main.py
+```
 
 ## Roadmap
 
 | Stage | Scope | Status |
 |---|---|---|
 | 00 | Project setup and Git configuration | Completed |
-| 01 | Python, OOP, and PEP 8 | Completed |
+| 01 | Python OOP (inheritance, encapsulation, polymorphism, abstraction), composition, pricing helpers, unittest, and Flake8 | Completed |
 | 02 | Django fundamentals | Planned |
 | 03 | PostgreSQL and Django ORM | Planned |
 | 04 | Django REST Framework | Planned |
