@@ -1,119 +1,38 @@
-# Inheritance, Polymorphism & Abstract Classes
+# Stage 01 — Inheritance, Polymorphism, and Abstract Classes
 
-## 1. Inheritance
+## Product hierarchy
 
-Inheritance allows one class to inherit attributes and methods from another class.
+`Product` in `apps/catalog/product.py` is an abstract base class built on `ABC`. It contains the shared name, price, stock behavior, validation, and common information formatting. Its abstract `get_product_info()` method requires concrete subclasses to provide type-specific details.
 
-In Zonix, `Product` is the parent class, while `PhysicalProduct` and `DigitalProduct` are child classes.
-
-### Product hierarchy
-
-- `Product` — base class.
-- `PhysicalProduct` — represents physical products.
-- `DigitalProduct` — represents digital products.
+```text
+Product (abstract)
+├── PhysicalProduct
+└── DigitalProduct
+```
 
 ### PhysicalProduct
 
-Additional attribute:
-- `weight_kg` — product weight in kilograms.
-
-Uses `super().__init__()` to reuse the parent constructor.
+Adds a positive `Decimal` `weight_kg`, exposed through a read-only property. Its `get_product_info()` includes the common product details and weight. Its string representation also includes the weight.
 
 ### DigitalProduct
 
-Additional attributes:
-- `file_size_mb` — digital file size.
-- `download_url` — download link.
+Adds a positive `Decimal` `file_size_mb` and a non-empty `download_url`, both exposed through read-only properties. Its `get_product_info()` includes the common details, file size, and download URL. Its string representation includes the file size.
 
-Both child classes reuse the common product functionality:
-- `sell()`
-- `restock()`
-- `is_available()`
-- `price`
-- `quantity`
+Both subclasses call `super().__init__()` and inherit the base price and stock operations, including `sell()`, `restock()`, `is_available()`, and `update_price()`.
 
-## 2. Polymorphism
+## Polymorphism
 
-Polymorphism allows different classes to implement the same method in different ways.
+Code can call `get_product_info()` on a `Product` reference and receive details from the concrete product type. Python dispatches to the subclass implementation at runtime. Both implementations reuse `_get_base_product_info()` for shared fields.
 
-In Zonix, all product types implement:
-
-`get_product_info()`
-
-Implementations:
-- `PhysicalProduct` returns general product information and weight.
-- `DigitalProduct` returns general product information, file size and download URL.
-
-The method is overridden in both child classes.
-
-Dynamic dispatch allows Python to select the correct implementation based on the object's actual type.
-
-## 3. Abstract Classes
-
-Abstract classes define a common interface for their subclasses.
-
-The `Product` class inherits from `ABC`:
-
-`class Product(ABC):`
-
-The `@abstractmethod` decorator marks methods that must be implemented by child classes.
-
-Abstract method:
-
-`get_product_info()`
-
-Both `PhysicalProduct` and `DigitalProduct` implement this method.
-
-The abstract `Product` class cannot be instantiated directly.
-
-### Shared product information
-
-The `_get_base_product_info()` method provides common product information:
-
-- Name
-- Price
-- Stock quantity
-
-Child classes reuse this method to avoid code duplication.
-
-## 4. Project Structure
+## Related files
 
 ```text
-apps/
-└── catalog/
-    ├── __init__.py
-    ├── product.py
-    ├── category.py
-    ├── physical_product.py
-    ├── digital_product.py
-    └── pricing.py
+apps/catalog/
+  product.py
+  physical_product.py
+  digital_product.py
 ```
 
-## 5. Testing
+## Current status
 
-The following test files were used during development:
-
-- `test_inheritance.py`
-- `test_polymorphism.py`
-- `test_abstract.py`
-
-The tests cover:
-
-- Creating physical and digital products.
-- Inheriting parent class functionality.
-- Overriding methods.
-- Polymorphic method calls.
-- Preventing direct instantiation of the abstract Product class.
-
-## 6. Key Concepts Learned
-
-- Inheritance
-- Parent and child classes
-- `super()`
-- Method overriding
-- Polymorphism
-- Dynamic dispatch
-- Abstract Base Classes (ABC)
-- `@abstractmethod`
-
-**Stage 01 progress:** Inheritance, Polymorphism and Abstract Classes implemented.
+Inheritance, overriding, runtime dispatch, and the abstract product interface are implemented. The repository does not currently contain the `test_inheritance.py`, `test_polymorphism.py`, or `test_abstract.py` files mentioned in earlier notes, so automated test coverage is not established by the checked-in project.

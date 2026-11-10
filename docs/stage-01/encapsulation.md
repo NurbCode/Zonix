@@ -1,31 +1,31 @@
 # Stage 01 — Encapsulation
 
-## Overview
+## Current implementation
 
-Implemented Encapsulation in the Product class to control access to internal object attributes.
+`Product` stores price and stock in `_price` and `_quantity`:
 
-## What Changed
+- `price` is exposed through a property with a setter that requires a non-negative `Decimal`.
+- `quantity` is exposed as a read-only property.
+- `restock(amount)` and `sell(amount)` are the supported stock mutation methods. They require positive integers; selling more than the available stock raises `ValueError`.
+- The constructor validates the product name, price type and value, and initial quantity type and value.
+- `update_price()` delegates to the `price` setter, so it uses the same validation.
 
-- Replaced public `price` attribute with `_price`.
-- Replaced public `quantity` attribute with `_quantity`.
-- Added `@property` for controlled attribute access.
-- Added `@price.setter` to validate price changes.
-- Made `quantity` read-only through the public interface.
-- Updated `update_price()` to use the price setter.
-- Preserved stock management through `restock()` and `sell()`.
+`PhysicalProduct` and `DigitalProduct` expose their additional attributes through read-only properties. As usual in Python, underscore-prefixed attributes signal non-public implementation details but do not enforce access restrictions.
 
-## Python Concepts
+## Concepts covered
 
-- Encapsulation
-- Properties and setters
-- Public and non-public attributes
-- Attribute validation
-- DRY principle
+- Properties and setters.
+- Public and non-public attributes.
+- Input validation and exceptions.
+- Keeping stock changes behind explicit methods.
+- Reusing validation to avoid duplicate logic.
 
-## Result
+## Related files
 
-Product attributes are now managed through controlled interfaces, preventing invalid price and stock updates through normal attribute access.
+- `apps/catalog/product.py`
+- `apps/catalog/physical_product.py`
+- `apps/catalog/digital_product.py`
 
-## Next Step
+## Current result
 
-Explore Inheritance and extend the Product class with specialized product types.
+Normal public access prevents direct assignment to `quantity` and validates price assignments. This is a Python interface convention, not strict protection against modifying underscore-prefixed fields. Automated tests for these behaviors are not currently committed.

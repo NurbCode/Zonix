@@ -1,65 +1,41 @@
-# Stage 01 — Category & Composition
+# Stage 01 — Categories and Composition
 
 ## Overview
 
-In this step, we introduced the `Category` class and explored the concept of Composition in Object-Oriented Programming (OOP).
+The catalog uses `Category` to group product objects. A category stores references to products; adding a product does not transfer ownership or copy the product itself.
 
-The goal was to group products into categories and establish relationships between Python objects.
+## Current implementation
 
-## What We Implemented
+`apps/catalog/category.py` defines `Category` with:
 
-### 1. Category Class
+- A non-empty `name`.
+- A `products` list annotated as `list[Product]`.
+- `add_product(product)`, which accepts `Product` instances and rejects duplicates.
+- `remove_product(product)`, which rejects products that are not members.
+- `get_products()`, which returns a shallow copy of the list.
+- `__str__()` and `__repr__()` representations.
 
-Created `category.py` with the following attributes and methods:
+`Product` is abstract, so categories contain concrete `PhysicalProduct` or `DigitalProduct` instances. The collection is shallow-copied: callers cannot change category membership by editing the returned list, but the product objects themselves remain shared references. The `products` attribute is also directly accessible in the current implementation.
 
-- `name` — category name.
-- `products` — list of Product objects.
-- `add_product()` — adds a product to the category.
-- `remove_product()` — removes a product from the category.
-- `get_products()` — returns a copy of the product list.
+## Concepts covered
 
-### 2. Composition
+- Composition and object references.
+- Type annotations for collections.
+- `isinstance()` checks.
+- List operations and shallow copies.
+- Exceptions for invalid membership operations.
+- Python special methods `__str__()` and `__repr__()`.
 
-Learned how one object can contain references to other objects.
-
-In Zonix:
-
-- A Category contains multiple Product objects.
-- Products maintain their own attributes and methods.
-- Category provides a way to organize related products.
-
-### 3. Python Concepts
-
-During this step, we explored:
-
-- `list[Product]` — type hints for lists of objects.
-- `isinstance()` — checking object types.
-- `append()` and `remove()` — list operations.
-- `copy()` — creating a shallow copy of a list.
-- `raise` — raising exceptions for invalid operations.
-
-## Project Structure
+## Related files
 
 ```text
-apps/
-└── catalog/
-    ├── __init__.py
-    ├── pricing.py
-    ├── product.py
-    └── category.py
+apps/catalog/
+  category.py
+  product.py
+  physical_product.py
+  digital_product.py
 ```
 
-## Result
+## Current result
 
-Zonix now supports product categorization through the `Category` class.
-
-Products can be added to and removed from categories, while retaining their own independent behavior.
-
-## Next Step
-
-Explore Python special methods:
-
-- `__str__()`
-- `__repr__()`
-
-These methods will improve how Product and Category objects are represented and displayed.
+Products can be grouped by category, removed, and listed without exposing the category's list through `get_products()`. There is no automated category test file in the repository yet.
