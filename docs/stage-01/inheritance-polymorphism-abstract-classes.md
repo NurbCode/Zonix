@@ -35,4 +35,4 @@ apps/catalog/
 
 ## Current status
 
-Inheritance, overriding, runtime dispatch, and the abstract product interface are implemented. The repository does not currently contain the `test_inheritance.py`, `test_polymorphism.py`, or `test_abstract.py` files mentioned in earlier notes, so automated test coverage is not established by the checked-in project.
+Inheritance, overriding, runtime dispatch, and the abstract product interface are implemented. `tests/test_products.py` exercises concrete physical and digital products and their validation. The current suite does not contain dedicated assertions for abstract-class instantiation or polymorphic dispatch across product types.

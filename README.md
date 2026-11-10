@@ -4,7 +4,7 @@ Zonix is a Python learning project for building an e-commerce backend incrementa
 
 ## Current status
 
-**Stage 01 — Python and object-oriented programming: completed.** The catalog demonstrates inheritance, encapsulation, polymorphism, and abstraction through an abstract `Product` base class and its physical and digital implementations. `Category` demonstrates composition. The project also includes pricing helper functions, 22 automated tests using `unittest`, and PEP 8 style checks with Flake8.
+**Stage 01 — Python and object-oriented programming: completed.** The catalog demonstrates inheritance, encapsulation, polymorphism, and abstraction through an abstract `Product` base class and its physical and digital implementations. `Category` demonstrates composition. The project also includes pricing helper functions, 36 automated tests using `unittest`, and PEP 8 style checks with Flake8.
 
 ## Repository structure
 
@@ -19,6 +19,10 @@ docs/
   development-log.md  Project progress summary
   stage-01/            Stage 01 concept notes
 main.py                Demonstration script for the catalog and OOP concepts
+tests/
+  test_category.py     Category behavior tests
+  test_products.py     Product validation and stock tests
+  test_pricing.py      Pricing helper tests
 ```
 
 ## Implemented functionality
@@ -26,7 +30,7 @@ main.py                Demonstration script for the catalog and OOP concepts
 - `Product` validates names, `Decimal` prices, and integer stock quantities. Its price is writable through a validating property; stock is read-only directly and changed through `restock()` and `sell()`.
 - `Product` is abstract. `PhysicalProduct` and `DigitalProduct` provide `get_product_info()` implementations and add their own read-only properties.
 - `Category` accepts `Product` instances, prevents duplicate membership, supports removal, and returns a shallow copy from `get_products()`.
-- `pricing.py` provides `calculate_total()`, `apply_discount()`, and a standalone `is_available()` helper.
+- `pricing.py` provides `calculate_total()`, `apply_discount()`, and a standalone `is_available()` helper, covered by `tests/test_pricing.py`.
 - Product and category objects provide string and developer representations.
 
 ## Running the Project
@@ -54,7 +58,7 @@ python -m flake8 apps tests main.py
 | Stage | Scope | Status |
 |---|---|---|
 | 00 | Project setup and Git configuration | Completed |
-| 01 | Python OOP (inheritance, encapsulation, polymorphism, abstraction), composition, pricing helpers, unittest, and Flake8 | Completed |
+| 01 | Python OOP (inheritance, encapsulation, polymorphism, abstraction), composition, pricing helpers, 36 unittest cases, and Flake8 | Completed |
 | 02 | Django fundamentals | Planned |
 | 03 | PostgreSQL and Django ORM | Planned |
 | 04 | Django REST Framework | Planned |

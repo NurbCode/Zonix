@@ -28,4 +28,4 @@
 
 ## Current result
 
-Normal public access prevents direct assignment to `quantity` and validates price assignments. This is a Python interface convention, not strict protection against modifying underscore-prefixed fields. Automated tests for these behaviors are not currently committed.
+Normal public access prevents direct assignment to `quantity` and validates price assignments. This is a Python interface convention, not strict protection against modifying underscore-prefixed fields. `tests/test_products.py` covers product validation and stock operations, including invalid sales and restocking.

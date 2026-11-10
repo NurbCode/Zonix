@@ -38,4 +38,4 @@ apps/catalog/
 
 ## Current result
 
-Products can be grouped by category, removed, and listed without exposing the category's list through `get_products()`. There is no automated category test file in the repository yet.
+Products can be grouped by category, removed, and listed without exposing the category's list through `get_products()`. `tests/test_category.py` contains automated tests for category validation, membership operations, the copied list, and object representations. Since `products` is public, callers can still change membership directly through that attribute.
