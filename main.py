@@ -1,78 +1,85 @@
 from decimal import Decimal
 
-from apps.catalog.product import Product
 from apps.catalog.category import Category
+from apps.catalog.physical_product import PhysicalProduct
+from apps.catalog.digital_product import DigitalProduct
 
-iphone = Product(name="iPhone", price=Decimal("999.99"), quantity=10)
-macbook = Product(name="MacBook", price=Decimal("1999.99"), quantity=5)
+
+# Create products
+iphone = PhysicalProduct(
+    name="iPhone 17",
+    price=Decimal("500000"),
+    quantity=10,
+    weight_kg=Decimal("0.2")
+)
+
+samsung = PhysicalProduct(
+    name="Samsung Galaxy S25",
+    price=Decimal("450000"),
+    quantity=5,
+    weight_kg=Decimal("0.19")
+)
+
+ebook = DigitalProduct(
+    name="Python Programming Ebook",
+    price=Decimal("5000"),
+    quantity=100,
+    file_size_mb=Decimal("15.5"),
+    download_url="https://example.com/ebook"
+)
 
 
-# print("Initial information:")
-# print(f"iPhone: {iphone.name}, Price: {iphone.price}, Quantity: {iphone.quantity}")
-
-# print("\nChecking availability:")
-# print(f"iPhone available: {iphone.is_available()}")
-
-# print("\nSelling products:")
-# iphone.sell(3)
-
-# print(f"Remaining stock: {iphone.quantity}")
-
-# print("\nRestocking:")
-# iphone.restock(5)
-
-# print(f"Updated stock: {iphone.quantity}")
-
-# print("\nUpdating price:")
-# iphone.update_price(Decimal("480000.00"))
-
-# print(f"New price: {iphone.price}")
-# print(f"iPhone: {iphone.name}, Price: {iphone.price}, Quantity: {iphone.quantity}")
-
+# Create category
 smartphones = Category("Smartphones")
 
-iphone = Product("iPhone 17", Decimal("500000"), 10)
-samsung = Product("Samsung Galaxy S25", Decimal("450000"), 5)
-google_pixel = Product("Google Pixel", Decimal("400000"), 7)
-
-# Add products to category
 smartphones.add_product(iphone)
 smartphones.add_product(samsung)
-smartphones.add_product(google_pixel)
+
 
 # Display category
-print(f"\nCategory: {smartphones.name}")
+print("=== CATEGORY ===")
+print(smartphones)
 
 for product in smartphones.get_products():
-    print(
-        f"Product: {product.name} | "
-        f"Price: {product.price} | "
-        f"Quantity: {product.quantity}"
-    )
+    print(product)
 
-print("\n--- Product Representation ---")
 
-print(iphone)
-print(repr(iphone))
+# Display product information
+print("\n=== PRODUCT INFORMATION ===")
+print(iphone.get_product_info())
+print()
+print(ebook.get_product_info())
 
-print("\n--- Category Representation ---")
 
-print(smartphones)
-print(repr(smartphones))
+# Demonstrate polymorphism
+print("\n=== POLYMORPHISM ===")
 
-print("\n--- Encapsulation ---")
+products = [iphone, samsung, ebook]
+
+for product in products:
+    print(product.get_product_info())
+    print("-" * 30)
+
+
+# Demonstrate encapsulation
+print("\n=== ENCAPSULATION ===")
 
 print(f"Current price: {iphone.price}")
 print(f"Current stock: {iphone.quantity}")
 
-# Update price
 iphone.price = Decimal("480000")
-
-# Restock
 iphone.restock(5)
-
-# Sell products
 iphone.sell(2)
 
 print(f"Updated price: {iphone.price}")
 print(f"Updated stock: {iphone.quantity}")
+
+
+# Demonstrate special methods
+print("\n=== SPECIAL METHODS ===")
+
+print(str(iphone))
+print(repr(iphone))
+
+print(str(smartphones))
+print(repr(smartphones))

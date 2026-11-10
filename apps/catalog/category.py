@@ -30,7 +30,6 @@ class Category:
     def __str__(self) -> str:
         return f"{self.name} ({len(self.products)} products)"
 
-
     def __repr__(self) -> str:
         return (
             f"Category(name={self.name!r}, "

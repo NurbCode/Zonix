@@ -27,23 +27,19 @@ class DigitalProduct(Product):
         self._file_size_mb = file_size_mb
         self._download_url = download_url
 
-
     @property
     def file_size_mb(self) -> Decimal:
         return self._file_size_mb
 
-
     @property
     def download_url(self) -> str:
         return self._download_url
-
 
     def __str__(self) -> str:
         return (
             f"{super().__str__()} "
             f"(Digital, {self.file_size_mb} MB)"
         )
-
 
     def get_product_info(self) -> str:
         return (
